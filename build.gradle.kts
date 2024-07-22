@@ -31,17 +31,22 @@ dependencies {
   implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
   implementation("io.vertx:vertx-web")
   implementation("io.vertx:vertx-mysql-client")
-  implementation("io.vertx:vertx-json-schema")
+  implementation("io.vertx:vertx-json-schema:$vertxVersion")
   implementation("io.github.cdimascio:dotenv-java:3.0.0")
-  implementation("io.vertx:vertx-config:4.5.9")
+  implementation("io.vertx:vertx-config:$vertxVersion")
+  implementation("io.netty:netty-resolver-dns-native-macos:4.1.85.Final:osx-aarch_64")
   testImplementation("io.vertx:vertx-junit5")
-
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
 
 java {
   sourceCompatibility = JavaVersion.VERSION_17
   targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType<JavaCompile> {
+  options.encoding = "UTF-8"
+  options.compilerArgs.add("-Xlint:deprecation")
 }
 
 tasks.withType<ShadowJar> {

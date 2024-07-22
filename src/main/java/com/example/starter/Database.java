@@ -1,22 +1,22 @@
 package com.example.starter;
 
-import io.vertx.core.Future;
+import io.github.cdimascio.dotenv.Dotenv;
 import io.vertx.core.Vertx;
+//import  io.vertx.mysqlclient.*;
+import io.vertx.mysqlclient.MySQLBuilder;
 import io.vertx.mysqlclient.MySQLConnectOptions;
-import io.vertx.mysqlclient.MySQLPool;
+import io.vertx.sqlclient.Pool;
 import io.vertx.sqlclient.PoolOptions;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
 public class Database {
-  public static Future<MySQLPool> createPool(Vertx vertx) {
+  public static Pool createPool(Vertx vertx) {
     // Load .env file
     Dotenv dotenv = Dotenv.load();
 
-    // Get database config  from .env
+    // Get database config from .env
     String host = dotenv.get("DB_HOST", "localhost");
     int port = Integer.parseInt(dotenv.get("DB_PORT", "3306"));
-    String database = dotenv.get("DB_NAME", "default_db");
+    String database = dotenv.get("DB_NAME", "dice");
     String user = dotenv.get("DB_USER", "root");
     String password = dotenv.get("DB_PASSWORD", "");
 
@@ -33,10 +33,15 @@ public class Database {
       .setHost(host)
       .setDatabase(database)
       .setUser(user)
-      .setPassword(password);
+      .setPassword(password)
+      .setPipeliningLimit(16);  // Enable pipelining
 
     PoolOptions poolOptions = new PoolOptions().setMaxSize(5);
 
-    return Future.succeededFuture(MySQLPool.pool(vertx, connectOptions, poolOptions));
+    return MySQLBuilder.pool()
+      .with(poolOptions)
+      .connectingTo(connectOptions)
+      .using(vertx)
+      .build();
   }
 }
