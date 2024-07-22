@@ -1,4 +1,4 @@
-= Starter
+= GO TO WIKI  
 
 image:https://img.shields.io/badge/vert.x-4.5.9-purple.svg[link="https://vertx.io"]
 
@@ -21,11 +21,7 @@ To run your application:
 ./gradlew clean run
 ```
 
-== Help
-
-* https://vertx.io/docs/[Vert.x Documentation]
-* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
-* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
-* https://discord.gg/6ry7aqPWXy[Vert.x Discord]
-
+<img width="1183" alt="Screenshot 2024-07-22 at 4 36 47 PM" src="https://github.com/user-attachments/assets/cf7499b0-edb9-4130-b21d-443f5f8bcc69">
+<img width="857" alt="Screenshot 2024-07-22 at 4 37 16 PM" src="https://github.com/user-attachments/assets/09a5aaa3-7bb1-450e-ad60-6131e5e66d05">
+<img width="519" alt="Screenshot 2024-07-22 at 4 37 37 PM" src="https://github.com/user-attachments/assets/26f6070c-1d91-484b-92bc-e9eb50f75bd4">
 
